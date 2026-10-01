@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,23 @@
   <title>藍天咖啡 Blue Sky Coffee ｜ 高階手沖精品咖啡豆專門</title>
   
   <!-- Google Fonts -->
+  <title>HSING_STUDIO ｜ 高奢・簡約・實穿 質感生活選品</title>
+  <meta name="description" content="HSING_STUDIO 為喜愛溫柔質感的你，挑選經得起時光推敲的高奢日常穿搭與生活選品。以奶茶色、米色、大地色調打造經典實穿的膠囊衣櫥。">
+
+  <!-- Google Fonts: Cormorant Garamond, Noto Serif TC, Noto Sans TC, Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
        CSS Variables & Base Reset
+       DESIGN SYSTEM & COLOR TOKENS
+       規格對應：
+       - 網站名稱：HSING_STUDIO
+       - 品牌風格：高奢、簡約、實穿
+       - 品牌顏色：奶茶色、米色、大地色
        ========================================================================== */
     :root {
       --primary-navy: #091a2e;      /* 深海深藍 - 沉穩高端背景 */
@@ -22,6 +33,10 @@
       --sky-light: #e0f2fe;         /* 輕盈天藍霧色 */
       --accent-gold: #f59e0b;       /* 咖啡烘焙琥珀金 */
       --accent-gold-hover: #d97706; /* 深琥珀金 */
+      /* 米色系 (Beige / Warm Alabaster) */
+      --c-beige-light: #FAF7F2;
+      --c-beige-card: #F4EFE6;
+      --c-beige-surface: #EDE5D8;
       
       --bg-white: #ffffff;
       --bg-light: #f8fafc;
@@ -43,8 +58,44 @@
       --radius-md: 12px;
       --radius-lg: 20px;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /* 奶茶色系 (Milk Tea / Soft Camel) */
+      --c-milktea-light: #E0D0BE;
+      --c-milktea: #C6A88B;
+      --c-milktea-dark: #A58261;
+      --c-milktea-deep: #8E6B4B;
+
+      /* 大地色系 (Earth / Taupe / Espresso) */
+      --c-earth-charcoal: #231C18;
+      --c-earth-espresso: #3A2E27;
+      --c-earth-taupe: #5E4E44;
+      --c-earth-muted: #827266;
+      --c-earth-border: #E2D7C9;
+      --c-earth-border-subtle: rgba(142, 107, 75, 0.15);
+
+      /* 金屬點綴色 (Champagne Gold) */
+      --c-accent-gold: #C09A6B;
+      --c-accent-gold-hover: #AA8253;
+
+      /* 字型設定 */
+      --font-serif-en: 'Cormorant Garamond', Georgia, serif;
+      --font-serif-tc: 'Noto Serif TC', serif;
+      --font-sans-tc: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans-en: 'Montserrat', sans-serif;
+
+      /* 陰影與圓角 */
+      --shadow-soft: 0 10px 30px rgba(58, 46, 39, 0.05);
+      --shadow-elevated: 0 18px 45px rgba(35, 28, 24, 0.08);
+      --shadow-hover: 0 25px 50px rgba(35, 28, 24, 0.12);
+      --radius-sm: 3px;
+      --radius-md: 6px;
+      --radius-lg: 12px;
+
+      /* 版面寬度 */
+      --max-width: 1200px;
+      --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
+    /* 基礎重設 */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -61,6 +112,13 @@
       color: var(--text-dark);
       background-color: var(--bg-light);
       line-height: 1.7;
+      background-color: var(--c-beige-light);
+      color: var(--c-earth-charcoal);
+      font-family: var(--font-sans-tc);
+      font-weight: 400;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -69,33 +127,52 @@
       color: inherit;
       text-decoration: none;
       transition: var(--transition);
+      transition: var(--transition-smooth);
     }
 
     button {
       font-family: inherit;
       border: none;
+      background: none;
       cursor: pointer;
       outline: none;
       transition: var(--transition);
+      transition: var(--transition-smooth);
     }
 
     img {
       max-width: 100%;
       height: auto;
       display: block;
+    input, textarea, select {
+      font-family: inherit;
+      font-size: 15px;
     }
 
+    /* 容器工具類 */
     .container {
       width: min(1200px, calc(100% - 48px));
       margin: 0 auto;
+      width: min(var(--max-width), calc(100% - 48px));
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .section {
       padding: 100px 0;
+      padding: 110px 0;
+      position: relative;
     }
 
     /* Headings & Texts */
+    /* 精品字體排印 */
     .eyebrow {
+      font-family: var(--font-sans-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--c-milktea-dark);
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -106,6 +183,8 @@
       color: var(--sky-blue);
       text-transform: uppercase;
       margin-bottom: 12px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
 
     .eyebrow::before {
@@ -113,16 +192,24 @@
       width: 24px;
       height: 2px;
       background-color: var(--sky-blue);
+      height: 1px;
+      background-color: var(--c-milktea-dark);
+      display: inline-block;
     }
 
     .section-title {
       font-family: var(--font-serif);
       font-size: clamp(2rem, 3.8vw, 2.85rem);
+      font-family: var(--font-serif-tc);
+      font-size: clamp(28px, 4vw, 42px);
       font-weight: 700;
       color: var(--primary-navy);
+      color: var(--c-earth-espresso);
       line-height: 1.35;
       margin-bottom: 20px;
       letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
     }
 
     .section-desc {
@@ -130,39 +217,99 @@
       color: var(--text-muted);
       max-width: 620px;
       line-height: 1.8;
+    .section-subtitle {
+      font-size: clamp(15px, 1.8vw, 17px);
+      color: var(--c-earth-taupe);
+      line-height: 1.85;
+      max-width: 640px;
+      font-weight: 300;
     }
 
     /* Buttons */
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    .section-header.center {
+      text-align: center;
+    }
+
+    .section-header.center .eyebrow {
+      justify-content: center;
+    }
+
+    .section-header.center .eyebrow::after {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background-color: var(--c-milktea-dark);
+      display: inline-block;
+    }
+
+    .section-header.center .section-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 按鈕樣式 */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       padding: 14px 28px;
+      padding: 14px 30px;
       border-radius: var(--radius-sm);
       font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       box-shadow: var(--shadow-sm);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      transition: var(--transition-smooth);
+      position: relative;
     }
 
     .btn-gold {
       background-color: var(--accent-gold);
       color: var(--primary-navy);
+    .btn:focus-visible {
+      outline: 2px solid var(--c-milktea-dark);
+      outline-offset: 4px;
     }
     .btn-gold:hover {
       background-color: var(--accent-gold-hover);
       color: #fff;
+
+    .btn-primary {
+      background-color: var(--c-earth-espresso);
+      color: var(--c-beige-light);
+      border: 1px solid var(--c-earth-espresso);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--c-milktea-deep);
+      border-color: var(--c-milktea-deep);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 8px 20px rgba(58, 46, 39, 0.18);
     }
 
     .btn-blue {
       background-color: var(--primary-blue);
       color: #ffffff;
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--c-earth-espresso);
+      border: 1px solid var(--c-earth-espresso);
     }
     .btn-blue:hover {
       background-color: #0b2d4f;
+
+    .btn-secondary:hover {
+      background-color: var(--c-earth-espresso);
+      color: var(--c-beige-light);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(15, 61, 105, 0.3);
     }
@@ -171,18 +318,30 @@
       background: transparent;
       border: 1.5px solid rgba(255, 255, 255, 0.6);
       color: #ffffff;
+    .btn-milktea {
+      background-color: var(--c-milktea);
+      color: #FFFFFF;
+      border: 1px solid var(--c-milktea);
     }
     .btn-outline:hover {
       background-color: rgba(255, 255, 255, 0.12);
       border-color: #ffffff;
+
+    .btn-milktea:hover {
+      background-color: var(--c-milktea-dark);
+      border-color: var(--c-milktea-dark);
       transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(165, 130, 97, 0.25);
     }
 
     /* ==========================================================================
        Header & Navbar
+       HEADER & NAVIGATION BAR
        ========================================================================== */
     .site-header {
       position: fixed;
+    header#top {
+      position: sticky;
       top: 0;
       left: 0;
       width: 100%;
@@ -192,15 +351,24 @@
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: var(--transition);
+      z-index: 100;
+      background-color: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--c-earth-border-subtle);
+      transition: var(--transition-smooth);
     }
 
     .navbar {
+    .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 80px;
+      height: 82px;
     }
 
+    /* 品牌標誌 */
     .brand-logo {
       display: flex;
       align-items: center;
@@ -213,10 +381,22 @@
       height: 42px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue));
+    .brand-symbol {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--c-milktea-dark);
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
+      font-family: var(--font-serif-en);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--c-earth-espresso);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FAF7F2, #EDE5D8);
+      box-shadow: inset 0 0 0 2px rgba(250, 247, 242, 0.8);
+      transition: var(--transition-smooth);
     }
 
     .brand-text h1 {
@@ -225,20 +405,44 @@
       letter-spacing: 0.12em;
       margin: 0;
       line-height: 1.1;
+    .brand-logo:hover .brand-symbol {
+      border-color: var(--c-accent-gold);
+      transform: rotate(5deg);
     }
 
     .brand-text span {
       font-family: var(--font-display);
       font-size: 0.68rem;
+    .brand-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: var(--font-sans-en);
+      font-size: 16.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--c-earth-charcoal);
+      line-height: 1.15;
+    }
+
+    .brand-sub {
+      font-family: var(--font-sans-tc);
+      font-size: 10.5px;
       letter-spacing: 0.22em;
       color: var(--sky-blue);
       display: block;
+      color: var(--c-earth-muted);
       margin-top: 3px;
     }
 
     .nav-menu {
+    /* 導覽列連結 */
+    .nav-links {
       display: flex;
       align-items: center;
+      gap: 36px;
       list-style: none;
       gap: 32px;
     }
@@ -247,6 +451,10 @@
       color: rgba(255, 255, 255, 0.82);
       font-size: 0.95rem;
       font-weight: 500;
+      font-size: 13.5px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--c-earth-espresso);
       position: relative;
       padding: 6px 0;
     }
@@ -259,21 +467,30 @@
       width: 0;
       height: 2px;
       background: var(--sky-blue);
+      height: 1.5px;
+      background-color: var(--c-milktea-dark);
       transition: width 0.3s ease;
     }
 
     .nav-link:hover {
       color: #ffffff;
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
     }
 
     .nav-link:hover::after {
       width: 100%;
+    .nav-link:hover {
+      color: var(--c-milktea-deep);
     }
 
+    /* 導覽功能區 (心願清單計數 + CTA) */
     .nav-actions {
       display: flex;
       align-items: center;
       gap: 16px;
+      gap: 18px;
     }
 
     .cart-btn {
@@ -284,13 +501,26 @@
       padding: 10px 16px;
       border-radius: var(--radius-sm);
       display: flex;
+    .wishlist-pill {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
       font-size: 0.9rem;
+      gap: 7px;
+      padding: 8px 14px;
+      background-color: var(--c-beige-surface);
+      border: 1px solid var(--c-earth-border);
+      border-radius: 20px;
+      font-size: 12.5px;
+      color: var(--c-earth-espresso);
+      transition: var(--transition-smooth);
     }
 
     .cart-btn:hover {
       background: rgba(255, 255, 255, 0.18);
+    .wishlist-pill:hover {
+      background-color: var(--c-milktea-light);
+      border-color: var(--c-milktea);
     }
 
     .cart-badge {
@@ -300,20 +530,58 @@
       font-weight: 700;
       padding: 2px 7px;
       border-radius: 10px;
+    .wishlist-pill svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--c-milktea-dark);
     }
 
     .mobile-toggle {
+    .wishlist-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--c-earth-espresso);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+    }
+
+    /* 手機選單漢堡鈕 */
+    .menu-toggle {
       display: none;
       background: transparent;
       color: #fff;
       font-size: 1.6rem;
       padding: 6px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--c-earth-border);
+      border-radius: var(--radius-sm);
+      align-items: center;
+      justify-content: center;
+      color: var(--c-earth-espresso);
+      background-color: var(--c-beige-card);
+    }
+
+    .menu-toggle svg {
+      width: 22px;
+      height: 22px;
     }
 
     /* ==========================================================================
        Hero Section
+       HERO SECTION：品牌主視覺首屏
        ========================================================================== */
     .hero {
+    .hero-section {
+      min-height: calc(100vh - 82px);
+      display: flex;
+      align-items: center;
+      padding: 60px 0 90px;
       position: relative;
       background: radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.15), transparent 45%),
                   linear-gradient(135deg, #061525 0%, var(--primary-navy) 60%, #0c2b4c 100%);
@@ -321,6 +589,9 @@
       padding-top: 170px;
       padding-bottom: 120px;
       overflow: hidden;
+      background: radial-gradient(circle at 85% 20%, rgba(224, 208, 190, 0.45) 0%, transparent 60%),
+                  radial-gradient(circle at 10% 80%, rgba(237, 229, 216, 0.6) 0%, transparent 50%),
+                  var(--c-beige-light);
     }
 
     .hero-glow {
@@ -339,25 +610,38 @@
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 60px;
+      gap: 56px;
       align-items: center;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      max-width: 620px;
     }
 
     .hero-title {
       font-family: var(--font-serif);
       font-size: clamp(2.5rem, 4.5vw, 3.8rem);
       font-weight: 900;
+    .hero-h1 {
+      font-family: var(--font-serif-tc);
+      font-size: clamp(34px, 4.6vw, 56px);
+      font-weight: 700;
       line-height: 1.25;
       letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
+      color: var(--c-earth-charcoal);
       margin-bottom: 24px;
     }
 
     .hero-title span.highlight {
       color: var(--sky-blue);
+    .hero-h1 .highlight-text {
+      color: var(--c-milktea-deep);
+      font-style: italic;
+      font-family: var(--font-serif-en), var(--font-serif-tc);
+      display: inline-block;
       position: relative;
     }
 
@@ -365,12 +649,31 @@
       font-size: 1.15rem;
       color: rgba(255, 255, 255, 0.85);
       line-height: 1.85;
+    .hero-h1 .highlight-text::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 6px;
+      background-color: rgba(198, 168, 139, 0.28);
+      z-index: -1;
+    }
+
+    .hero-lead {
+      font-size: 16.5px;
+      color: var(--c-earth-taupe);
+      line-height: 1.9;
       margin-bottom: 36px;
       max-width: 540px;
+      font-weight: 300;
     }
 
     .hero-cta-group {
+    .hero-actions {
       display: flex;
+      align-items: center;
+      gap: 18px;
       flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 48px;
@@ -382,6 +685,12 @@
       gap: 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
       padding-top: 32px;
+    .hero-specs-bar {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding-top: 30px;
+      border-top: 1px solid var(--c-earth-border);
     }
 
     .stat-item h3 {
@@ -389,17 +698,31 @@
       font-size: 1.75rem;
       color: var(--sky-blue);
       margin-bottom: 4px;
+    .spec-item {
+      display: flex;
+      flex-direction: column;
     }
 
     .stat-item p {
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.7);
+    .spec-value {
+      font-family: var(--font-serif-en);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--c-earth-espresso);
+      line-height: 1.1;
     }
 
     /* Hero Visual Card */
     .hero-visual {
       position: relative;
       z-index: 2;
+    .spec-label {
+      font-size: 11.5px;
+      letter-spacing: 0.14em;
+      color: var(--c-earth-muted);
+      margin-top: 4px;
     }
 
     .hero-glass-card {
@@ -410,8 +733,16 @@
       border-radius: var(--radius-lg);
       padding: 40px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    /* Hero 右側高奢藝術卡片視覺 */
+    .hero-visual-card {
       position: relative;
       text-align: center;
+      background: linear-gradient(145deg, #F8F4EE, #EBE1D3);
+      border: 1px solid var(--c-earth-border);
+      border-radius: var(--radius-md);
+      padding: 36px 30px;
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
     }
 
     .dripper-svg {
@@ -420,11 +751,28 @@
       margin: 0 auto 20px;
       filter: drop-shadow(0 15px 25px rgba(56, 189, 248, 0.25));
       animation: float 4s ease-in-out infinite;
+    .hero-visual-card::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198, 168, 139, 0.35) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
+    .atelier-seal {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--c-milktea);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
     }
 
     .badge-float {
@@ -433,12 +781,17 @@
       right: -15px;
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
       color: var(--primary-navy);
+    .atelier-title {
+      font-family: var(--font-sans-en);
+      font-size: 12px;
       font-weight: 700;
       font-size: 0.8rem;
       padding: 8px 16px;
       border-radius: 30px;
       box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
       letter-spacing: 0.05em;
+      letter-spacing: 0.22em;
+      color: var(--c-earth-espresso);
     }
 
     .dripper-status {
@@ -447,12 +800,25 @@
       font-weight: 600;
       color: #fff;
       margin-bottom: 6px;
+    .atelier-tag {
+      font-size: 11px;
+      padding: 3px 9px;
+      background-color: var(--c-milktea-light);
+      color: var(--c-earth-espresso);
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.08em;
     }
 
     .dripper-sub {
       font-size: 0.85rem;
       color: var(--sky-blue);
       letter-spacing: 0.1em;
+    /* 織品色卡展示元件 */
+    .swatch-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 26px;
     }
 
     /* ==========================================================================
@@ -460,6 +826,13 @@
        ========================================================================== */
     .pillars-section {
       background-color: var(--bg-white);
+    .swatch-box {
+      background-color: #FFFFFF;
+      border: 1px solid var(--c-earth-border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+      transition: var(--transition-smooth);
     }
 
     .pillars-grid {
@@ -467,6 +840,10 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       margin-top: 60px;
+    .swatch-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      border-color: var(--c-milktea);
     }
 
     .pillar-card {
@@ -475,6 +852,11 @@
       border-radius: var(--radius-md);
       padding: 40px 32px;
       transition: var(--transition);
+    .swatch-color-pill {
+      width: 100%;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
       position: relative;
       overflow: hidden;
     }
@@ -489,16 +871,22 @@
       background: linear-gradient(90deg, var(--primary-blue), var(--sky-blue));
       opacity: 0;
       transition: var(--transition);
+    .swatch-color-pill.milktea {
+      background: linear-gradient(135deg, #DFCCA8, #C4A482);
     }
 
     .pillar-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-md);
       border-color: #cbd5e1;
+    .swatch-color-pill.beige {
+      background: linear-gradient(135deg, #FAF7F2, #E6DDD0);
     }
 
     .pillar-card:hover::before {
       opacity: 1;
+    .swatch-color-pill.earth {
+      background: linear-gradient(135deg, #7A6658, #4A3A31);
     }
 
     .pillar-icon {
@@ -512,6 +900,11 @@
       justify-content: center;
       font-size: 1.8rem;
       margin-bottom: 24px;
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--c-earth-espresso);
+      letter-spacing: 0.05em;
     }
 
     .pillar-title {
@@ -519,19 +912,56 @@
       font-size: 1.35rem;
       color: var(--primary-navy);
       margin-bottom: 14px;
+    .swatch-meta {
+      font-size: 10px;
+      color: var(--c-earth-muted);
+      font-family: var(--font-sans-en);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
     }
 
     .pillar-desc {
       color: var(--text-muted);
       font-size: 0.95rem;
+    /* 手繪質感極簡衣物幾何 SVG 容器 */
+    .curation-quote-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--c-earth-border);
+      border-radius: var(--radius-sm);
+      padding: 20px 22px;
+      position: relative;
+    }
+
+    .curation-quote-card p {
+      font-family: var(--font-serif-tc);
+      font-size: 14.5px;
+      color: var(--c-earth-espresso);
       line-height: 1.75;
+      font-style: italic;
+    }
+
+    .curation-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--c-beige-surface);
+      font-size: 11.5px;
+      color: var(--c-milktea-dark);
+      letter-spacing: 0.1em;
     }
 
     /* ==========================================================================
        Coffee Menu Showcase (功能: 吸引客戶消費咖啡)
+       SECTION: 品牌理念 PHILOSOPHY
        ========================================================================== */
     .menu-section {
       background-color: var(--bg-light);
+    .philosophy-section {
+      background-color: var(--c-beige-card);
+      border-top: 1px solid var(--c-earth-border);
+      border-bottom: 1px solid var(--c-earth-border);
     }
 
     .menu-header-wrap {
@@ -539,8 +969,32 @@
       justify-content: space-between;
       align-items: flex-end;
       flex-wrap: wrap;
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .philosophy-narrative p {
+      font-size: 16px;
+      color: var(--c-earth-taupe);
+      line-height: 1.95;
+      margin-bottom: 22px;
+      font-weight: 300;
+    }
+
+    .philosophy-narrative p strong {
+      color: var(--c-earth-espresso);
+      font-weight: 600;
+    }
+
+    .philosophy-feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
       margin-bottom: 40px;
+      margin-top: 36px;
     }
 
     /* Filter Tabs */
@@ -548,6 +1002,12 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+    .pillar-card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--c-earth-border);
+      border-radius: var(--radius-sm);
+      padding: 24px 20px;
+      transition: var(--transition-smooth);
     }
 
     .filter-btn {
@@ -558,29 +1018,56 @@
       color: var(--text-muted);
       font-size: 0.9rem;
       font-weight: 500;
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      border-color: var(--c-milktea);
     }
 
     .filter-btn.active, .filter-btn:hover {
       background: var(--primary-blue);
       color: #ffffff;
       border-color: var(--primary-blue);
+    .pillar-num {
+      font-family: var(--font-serif-en);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--c-milktea);
+      margin-bottom: 6px;
     }
 
     .beans-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 28px;
+    .pillar-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--c-earth-espresso);
+      margin-bottom: 8px;
     }
 
     .bean-card {
       background: var(--bg-white);
       border: 1px solid var(--border-color);
+    .pillar-desc {
+      font-size: 12.5px;
+      color: var(--c-earth-muted);
+      line-height: 1.7;
+    }
+
+    /* 右側品牌規格表卡片 */
+    .brand-spec-sheet {
+      background: #FFFFFF;
+      border: 1px solid var(--c-earth-border);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: var(--transition);
       box-shadow: var(--shadow-sm);
+      padding: 40px 34px;
+      box-shadow: var(--shadow-soft);
       position: relative;
     }
 
@@ -588,6 +1075,13 @@
       transform: translateY(-6px);
       box-shadow: var(--shadow-lg);
       border-color: #93c5fd;
+    .spec-sheet-header {
+      border-bottom: 1px solid var(--c-earth-border);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
     }
 
     .bean-tag {
@@ -597,10 +1091,14 @@
       background: var(--sky-light);
       color: var(--primary-blue);
       font-size: 0.75rem;
+    .spec-sheet-title {
+      font-family: var(--font-serif-tc);
+      font-size: 20px;
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
       letter-spacing: 0.05em;
+      color: var(--c-earth-espresso);
     }
 
     .bean-visual-box {
@@ -608,6 +1106,11 @@
       padding: 36px 20px 24px;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
+    .spec-sheet-code {
+      font-family: var(--font-sans-en);
+      font-size: 11px;
+      color: var(--c-milktea-dark);
+      letter-spacing: 0.16em;
     }
 
     .bean-avatar-svg {
@@ -615,10 +1118,18 @@
       height: 90px;
       margin: 0 auto;
       transition: var(--transition);
+    .spec-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--c-beige-surface);
+      font-size: 13.5px;
     }
 
     .bean-card:hover .bean-avatar-svg {
       transform: scale(1.08) rotate(-4deg);
+    .spec-row:last-child {
+      border-bottom: none;
     }
 
     .bean-body {
@@ -626,6 +1137,10 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+    .spec-key {
+      font-weight: 600;
+      color: var(--c-earth-muted);
+      letter-spacing: 0.08em;
     }
 
     .bean-origin {
@@ -635,6 +1150,9 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 6px;
+    .spec-val {
+      color: var(--c-earth-espresso);
+      line-height: 1.6;
     }
 
     .bean-name {
@@ -644,13 +1162,24 @@
       color: var(--primary-navy);
       margin-bottom: 10px;
       line-height: 1.4;
+    /* ==========================================================================
+       SECTION: 本季選品 CURATED COLLECTION
+       ========================================================================== */
+    .collection-section {
+      background-color: var(--c-beige-light);
     }
 
     .bean-notes {
       font-size: 0.88rem;
       color: var(--text-muted);
       margin-bottom: 18px;
+    /* 分類篩選頁籤 */
+    .filter-tabs {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
       flex-wrap: wrap;
       gap: 6px;
     }
@@ -661,6 +1190,15 @@
       padding: 3px 8px;
       border-radius: 4px;
       font-size: 0.78rem;
+    .filter-tab {
+      padding: 9px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--c-earth-taupe);
+      background-color: var(--c-beige-card);
+      border: 1px solid var(--c-earth-border);
+      transition: var(--transition-smooth);
     }
 
     .bean-roast {
@@ -672,11 +1210,35 @@
       margin-bottom: 20px;
       padding-bottom: 16px;
       border-bottom: 1px dashed var(--border-color);
+    .filter-tab:hover {
+      border-color: var(--c-milktea);
+      color: var(--c-earth-espresso);
     }
 
     .roast-meter {
+    .filter-tab.active {
+      background-color: var(--c-earth-espresso);
+      color: #FFFFFF;
+      border-color: var(--c-earth-espresso);
+    }
+
+    /* 商品卡片網格 */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--c-earth-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
       display: flex;
       gap: 4px;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+      position: relative;
     }
 
     .roast-dot {
@@ -684,17 +1246,36 @@
       height: 9px;
       border-radius: 50%;
       background: #cbd5e1;
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--c-milktea);
     }
 
     .roast-dot.active {
       background: var(--accent-gold);
+    .product-visual {
+      height: 290px;
+      background-color: var(--c-beige-surface);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .bean-footer {
       margin-top: auto;
+    /* 精美時尚商品藝術圖繪 (純 CSS / SVG) */
+    .product-visual-art {
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      justify-content: center;
+      transition: transform 0.6s ease;
+      position: relative;
     }
 
     .bean-price {
@@ -702,6 +1283,8 @@
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--primary-navy);
+    .product-card:hover .product-visual-art {
+      transform: scale(1.04);
     }
 
     .bean-price small {
@@ -709,6 +1292,21 @@
       font-weight: 400;
       color: var(--text-muted);
       margin-left: 2px;
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(4px);
+      color: var(--c-earth-espresso);
+      font-size: 10.5px;
+      font-family: var(--font-sans-en);
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      border: 1px solid var(--c-earth-border);
+      z-index: 2;
     }
 
     .add-cart-btn {
@@ -719,13 +1317,34 @@
       font-size: 0.85rem;
       font-weight: 600;
       display: inline-flex;
+    .wishlist-heart-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--c-earth-border);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       gap: 6px;
+      justify-content: center;
+      color: var(--c-earth-muted);
+      z-index: 2;
+      transition: var(--transition-smooth);
     }
 
     .add-cart-btn:hover {
       background: var(--accent-gold);
       color: var(--primary-navy);
+    .wishlist-heart-btn:hover,
+    .wishlist-heart-btn.active {
+      color: #D9534F;
+      background-color: #FFFFFF;
+      border-color: #D9534F;
+      transform: scale(1.1);
     }
 
     /* ==========================================================================
@@ -735,6 +1354,13 @@
       background: var(--primary-navy);
       color: #ffffff;
       position: relative;
+    .wishlist-heart-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      transition: fill 0.25s ease;
     }
 
     .brew-grid {
@@ -742,16 +1368,22 @@
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: center;
+    .wishlist-heart-btn.active svg {
+      fill: #D9534F;
     }
 
     .brew-steps-list {
+    .product-details {
+      padding: 24px 22px 20px;
       display: flex;
       flex-direction: column;
       gap: 24px;
       margin-top: 36px;
+      flex-grow: 1;
     }
 
     .brew-step-item {
+    .product-category-row {
       display: flex;
       gap: 20px;
       background: rgba(255, 255, 255, 0.04);
@@ -759,12 +1391,22 @@
       padding: 24px;
       border-radius: var(--radius-md);
       transition: var(--transition);
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
     }
 
     .brew-step-item:hover {
       background: rgba(255, 255, 255, 0.08);
       border-color: var(--sky-blue);
       transform: translateX(6px);
+    .product-cat {
+      font-family: var(--font-sans-en);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--c-milktea-dark);
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
     .step-badge {
@@ -777,10 +1419,12 @@
       font-family: var(--font-display);
       font-size: 1.1rem;
       font-weight: 700;
+    .product-tones {
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+      gap: 6px;
     }
 
     .step-content h4 {
@@ -788,12 +1432,24 @@
       font-size: 1.15rem;
       margin-bottom: 6px;
       color: #ffffff;
+    .tone-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .step-content p {
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.72);
       line-height: 1.65;
+    .product-title {
+      font-family: var(--font-serif-tc);
+      font-size: 17.5px;
+      font-weight: 700;
+      color: var(--c-earth-espresso);
+      line-height: 1.45;
+      margin-bottom: 8px;
     }
 
     /* Ratio Calculator Card */
@@ -804,6 +1460,11 @@
       padding: 44px 36px;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
       position: relative;
+    .product-fabric {
+      font-size: 12.5px;
+      color: var(--c-earth-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
     }
 
     .calc-card-title {
@@ -811,16 +1472,39 @@
       font-size: 1.45rem;
       color: #ffffff;
       margin-bottom: 8px;
+    .product-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--c-beige-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .calc-card-subtitle {
       font-size: 0.88rem;
       color: var(--sky-blue);
       margin-bottom: 30px;
+    .product-price {
+      font-family: var(--font-sans-en);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--c-earth-espresso);
+      letter-spacing: 0.04em;
     }
 
     .calc-field {
       margin-bottom: 24px;
+    .btn-card-action {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--c-milktea-deep);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--c-milktea-light);
+      background-color: var(--c-beige-light);
+      transition: var(--transition-smooth);
     }
 
     .calc-label {
@@ -829,6 +1513,10 @@
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.85);
       margin-bottom: 10px;
+    .btn-card-action:hover {
+      background-color: var(--c-earth-espresso);
+      color: #FFFFFF;
+      border-color: var(--c-earth-espresso);
     }
 
     .calc-slider {
@@ -838,6 +1526,13 @@
       background: #1e3a5f;
       outline: none;
       -webkit-appearance: none;
+    /* ==========================================================================
+       SECTION: 穿搭日常 STYLING JOURNAL (實穿精神)
+       ========================================================================== */
+    .journal-section {
+      background-color: var(--c-beige-surface);
+      border-top: 1px solid var(--c-earth-border);
+      border-bottom: 1px solid var(--c-earth-border);
     }
 
     .calc-slider::-webkit-slider-thumb {
@@ -851,10 +1546,12 @@
     }
 
     .ratio-options {
+    .journal-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 10px;
+      gap: 30px;
     }
 
     .ratio-btn {
@@ -862,16 +1559,45 @@
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: #ffffff;
+    .journal-card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--c-earth-border);
       border-radius: var(--radius-sm);
       font-size: 0.85rem;
       text-align: center;
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+      position: relative;
     }
 
     .ratio-btn.active, .ratio-btn:hover {
       background: var(--sky-blue);
       color: var(--primary-navy);
+    .journal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-soft);
+      border-color: var(--c-milktea);
+    }
+
+    .journal-time {
+      font-family: var(--font-sans-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--c-milktea-dark);
+      margin-bottom: 10px;
+    }
+
+    .journal-title {
+      font-family: var(--font-serif-tc);
+      font-size: 20px;
       font-weight: 700;
       border-color: var(--sky-blue);
+      color: var(--c-earth-espresso);
+      margin-bottom: 14px;
+      line-height: 1.4;
     }
 
     .calc-results {
@@ -882,6 +1608,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 18px;
+    .journal-desc {
+      font-size: 14px;
+      color: var(--c-earth-taupe);
+      line-height: 1.85;
+      margin-bottom: 24px;
     }
 
     .result-box h5 {
@@ -889,6 +1620,14 @@
       color: rgba(255, 255, 255, 0.6);
       margin-bottom: 4px;
       letter-spacing: 0.05em;
+    .journal-formula {
+      margin-top: auto;
+      background-color: var(--c-beige-card);
+      border-left: 2.5px solid var(--c-milktea);
+      padding: 12px 16px;
+      font-size: 12px;
+      color: var(--c-earth-espresso);
+      line-height: 1.6;
     }
 
     .result-box p {
@@ -896,36 +1635,58 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--accent-gold);
+    .journal-formula strong {
+      display: block;
+      font-weight: 600;
+      color: var(--c-milktea-deep);
+      margin-bottom: 3px;
+      letter-spacing: 0.06em;
     }
 
     /* ==========================================================================
        Customer Reviews (目標受眾: 咖啡愛好者)
+       SECTION: 客戶真實回饋 TESTIMONIALS (喜歡我們的人)
        ========================================================================== */
     .reviews-section {
       background-color: var(--bg-white);
+    .community-section {
+      background-color: var(--c-beige-light);
     }
 
     .reviews-grid {
+    .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       margin-top: 60px;
+      gap: 30px;
     }
 
     .review-card {
       background: var(--bg-light);
       border: 1px solid var(--border-color);
+    .quote-box {
+      background-color: #FFFFFF;
+      border: 1px solid var(--c-earth-border);
       border-radius: var(--radius-md);
       padding: 36px 30px;
+      box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: var(--transition);
+      position: relative;
     }
 
     .review-card:hover {
       box-shadow: var(--shadow-md);
       border-color: #cbd5e1;
+    .quote-mark {
+      font-family: var(--font-serif-en);
+      font-size: 56px;
+      line-height: 1;
+      color: var(--c-milktea-light);
+      margin-bottom: 8px;
     }
 
     .review-stars {
@@ -938,49 +1699,80 @@
       font-size: 0.96rem;
       color: var(--text-dark);
       line-height: 1.8;
+    .quote-text {
+      font-size: 14.5px;
+      color: var(--c-earth-espresso);
+      line-height: 1.9;
       margin-bottom: 24px;
       font-style: italic;
+      font-style: normal;
     }
 
     .reviewer-info {
+    .quote-author-group {
+      margin-top: auto;
       display: flex;
       align-items: center;
       gap: 14px;
       border-top: 1px solid var(--border-color);
       padding-top: 18px;
+      border-top: 1px solid var(--c-beige-surface);
     }
 
     .reviewer-avatar {
       width: 44px;
       height: 44px;
+    .author-avatar {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: var(--primary-blue);
       color: #fff;
+      background: linear-gradient(135deg, var(--c-milktea-light), var(--c-milktea));
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: var(--font-serif-en);
       font-weight: 700;
       font-size: 0.9rem;
+      color: var(--c-earth-espresso);
+      font-size: 16px;
     }
 
     .reviewer-name {
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-name {
+      font-size: 13.5px;
       font-weight: 600;
       font-size: 0.95rem;
       color: var(--primary-navy);
+      color: var(--c-earth-espresso);
     }
 
     .reviewer-role {
       font-size: 0.8rem;
       color: var(--text-muted);
+    .author-role {
+      font-size: 11.5px;
+      color: var(--c-earth-muted);
     }
 
     /* ==========================================================================
        CTA / VIP Subscription Section
+       SECTION: VIP 預約與訂閱 CONNECT (功能：吸引客戶)
        ========================================================================== */
     .cta-section {
       background: linear-gradient(135deg, #07192d 0%, var(--primary-blue) 100%);
       color: #ffffff;
       text-align: center;
+    .connect-section {
+      background: linear-gradient(135deg, #2E2520, #1F1915);
+      color: var(--c-beige-light);
+      padding: 100px 0;
       position: relative;
       overflow: hidden;
     }
@@ -990,6 +1782,16 @@
       margin: 0 auto;
       position: relative;
       z-index: 2;
+    .connect-section::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198, 168, 139, 0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .cta-title {
@@ -997,6 +1799,11 @@
       font-size: clamp(2rem, 3.5vw, 2.7rem);
       margin-bottom: 18px;
       color: #ffffff;
+    .connect-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 60px;
+      align-items: center;
     }
 
     .cta-desc {
@@ -1004,6 +1811,8 @@
       color: rgba(255, 255, 255, 0.85);
       margin-bottom: 36px;
       line-height: 1.8;
+    .connect-content .eyebrow {
+      color: var(--c-milktea);
     }
 
     .subscribe-form {
@@ -1015,6 +1824,8 @@
       border-radius: var(--radius-sm);
       padding: 6px;
       backdrop-filter: blur(10px);
+    .connect-content .eyebrow::before {
+      background-color: var(--c-milktea);
     }
 
     .subscribe-input {
@@ -1034,14 +1845,26 @@
     .subscribe-btn {
       background: var(--accent-gold);
       color: var(--primary-navy);
+    .connect-title {
+      font-family: var(--font-serif-tc);
+      font-size: clamp(30px, 3.8vw, 44px);
       font-weight: 700;
       padding: 12px 24px;
       border-radius: 4px;
       white-space: nowrap;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      line-height: 1.35;
     }
 
     .subscribe-btn:hover {
       background: #fbbf24;
+    .connect-desc {
+      font-size: 15.5px;
+      color: #D6CBC0;
+      line-height: 1.9;
+      margin-bottom: 30px;
+      font-weight: 300;
     }
 
     /* ==========================================================================
@@ -1074,8 +1897,10 @@
       box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    .connect-perks {
       display: flex;
       flex-direction: column;
+      gap: 14px;
     }
 
     .cart-drawer.active {
@@ -1085,15 +1910,24 @@
     .cart-drawer-header {
       padding: 24px;
       border-bottom: 1px solid var(--border-color);
+    .perk-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
+      font-size: 13.5px;
+      color: #EDE5D8;
     }
 
     .cart-drawer-header h3 {
       font-family: var(--font-serif);
       font-size: 1.25rem;
       color: var(--primary-navy);
+    .perk-item svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--c-milktea);
+      flex-shrink: 0;
     }
 
     .close-drawer-btn {
@@ -1101,6 +1935,15 @@
       font-size: 1.5rem;
       color: var(--text-muted);
       line-height: 1;
+    /* 吸引客戶表單卡片 */
+    .connect-form-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 215, 201, 0.2);
+      border-radius: var(--radius-md);
+      padding: 42px 36px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
     .cart-drawer-items {
@@ -1110,6 +1953,8 @@
       display: flex;
       flex-direction: column;
       gap: 18px;
+    .form-group {
+      margin-bottom: 20px;
     }
 
     .cart-item {
@@ -1118,29 +1963,55 @@
       justify-content: space-between;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--border-color);
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #EDE5D8;
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
     .cart-item-info h4 {
       font-size: 0.95rem;
       color: var(--primary-navy);
       margin-bottom: 4px;
+    .form-input, .form-select {
+      width: 100%;
+      padding: 13px 16px;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(226, 215, 201, 0.3);
+      border-radius: var(--radius-sm);
+      color: #FFFFFF;
+      transition: var(--transition-smooth);
     }
 
     .cart-item-info p {
       font-size: 0.85rem;
       color: var(--text-muted);
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--c-milktea);
+      background-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(198, 168, 139, 0.25);
     }
 
     .cart-item-price {
       font-family: var(--font-display);
       font-weight: 700;
       color: var(--primary-blue);
+    .form-input::placeholder {
+      color: rgba(237, 229, 216, 0.5);
     }
 
     .cart-drawer-footer {
       padding: 24px;
       border-top: 1px solid var(--border-color);
       background: var(--bg-light);
+    .form-select option {
+      background-color: #2E2520;
+      color: #FFFFFF;
     }
 
     .cart-total-row {
@@ -1153,18 +2024,31 @@
     }
 
     .checkout-btn {
+    .form-submit-btn {
       width: 100%;
       padding: 14px;
       background: var(--primary-blue);
       color: #fff;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--c-milktea), var(--c-milktea-dark));
+      color: #FFFFFF;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       border-radius: var(--radius-sm);
       font-size: 1rem;
       font-weight: 700;
+      font-size: 14px;
+      margin-top: 10px;
     }
 
     .checkout-btn:hover {
       background: var(--accent-gold);
       color: var(--primary-navy);
+    .form-submit-btn:hover {
+      background: linear-gradient(135deg, var(--c-milktea-light), var(--c-milktea));
+      color: var(--c-earth-charcoal);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
 
     /* Toast Notification */
@@ -1196,12 +2080,19 @@
 
     /* ==========================================================================
        Footer
+       FOOTER 頁尾資訊
        ========================================================================== */
     .site-footer {
       background: #051321;
       color: rgba(255, 255, 255, 0.7);
       padding: 80px 0 30px;
       font-size: 0.9rem;
+    footer {
+      background-color: #191411;
+      color: #C0B4A7;
+      padding: 80px 0 36px;
+      border-top: 1px solid rgba(226, 215, 201, 0.1);
+      font-size: 13.5px;
     }
 
     .footer-grid {
@@ -1210,18 +2101,41 @@
       gap: 48px;
       padding-bottom: 60px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      grid-template-columns: 1.4fr 0.8fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
     }
 
     .footer-brand p {
       margin: 18px 0 24px;
       line-height: 1.8;
+    .footer-col-brand .brand-name {
+      color: #FFFFFF;
+    }
+
+    .footer-col-brand .brand-sub {
+      color: var(--c-milktea);
+    }
+
+    .footer-bio {
+      margin-top: 18px;
+      line-height: 1.85;
+      color: #A89B8E;
       max-width: 320px;
+      font-size: 13px;
     }
 
     .footer-title {
       color: #ffffff;
       font-family: var(--font-serif);
       font-size: 1.1rem;
+    .footer-heading {
+      font-family: var(--font-sans-en);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-milktea);
       margin-bottom: 20px;
       position: relative;
     }
@@ -1237,6 +2151,7 @@
     }
 
     .footer-links {
+    .footer-nav-list {
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -1246,57 +2161,224 @@
     .footer-links a:hover {
       color: var(--sky-blue);
       transform: translateX(4px);
+    .footer-nav-list a {
+      color: #C0B4A7;
     }
 
     .footer-contact-item {
+    .footer-nav-list a:hover {
+      color: #FFFFFF;
+      padding-left: 4px;
+    }
+
+    .footer-info-item {
       display: flex;
       gap: 10px;
       margin-bottom: 12px;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
       line-height: 1.6;
+    }
+
+    .footer-info-item svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--c-milktea);
+      flex-shrink: 0;
+      margin-top: 3px;
     }
 
     .footer-bottom {
       padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
+      align-items: center;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
       font-size: 0.82rem;
+      font-size: 12px;
+      color: #8C7F72;
+    }
+
+    .footer-bottom a {
+      color: var(--c-milktea);
     }
 
     /* ==========================================================================
        Responsive Media Queries
+       TOAST 互動通知
        ========================================================================== */
     @media (max-width: 1024px) {
       .beans-grid {
         grid-template-columns: repeat(2, 1fr);
+    .toast-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background-color: var(--c-earth-espresso);
+      color: var(--c-beige-light);
+      border-left: 3.5px solid var(--c-milktea);
+      padding: 16px 24px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+      font-size: 13.5px;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
+      max-width: 380px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-icon {
+      width: 18px;
+      height: 18px;
+      fill: var(--c-milktea);
+      flex-shrink: 0;
+    }
+
+    /* 回到頂端按鈕 */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      width: 44px;
+      height: 44px;
+      background-color: var(--c-beige-card);
+      border: 1px solid var(--c-earth-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--c-earth-espresso);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-smooth);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background-color: var(--c-earth-espresso);
+      color: #FFFFFF;
+      border-color: var(--c-earth-espresso);
+    }
+
+    /* ==========================================================================
+       SCROLL REVEAL ANIMATIONS
+       ========================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN (RWD 規格)
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
       }
       .pillars-grid, .reviews-grid {
         grid-template-columns: repeat(2, 1fr);
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
       }
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .brew-grid {
+      .connect-grid {
         grid-template-columns: 1fr;
         gap: 48px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
     @media (max-width: 768px) {
       .section {
         padding: 70px 0;
+    @media (max-width: 820px) {
+      .menu-toggle {
+        display: flex;
       }
       .hero-grid {
+
+      .nav-links {
+        position: absolute;
+        top: 82px;
+        left: 0;
+        width: 100%;
+        background-color: var(--c-beige-light);
+        border-bottom: 1px solid var(--c-earth-border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 32px;
+        gap: 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+      }
+
+      .nav-links.open {
+        max-height: 380px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .journal-grid,
+      .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 40px;
       }
       .hero-glass-card {
         padding: 30px 20px;
+
+      .section {
+        padding: 80px 0;
       }
       .mobile-toggle {
         display: block;
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: calc(100% - 32px);
       }
       .nav-menu {
         position: fixed;
@@ -1306,6 +2388,12 @@
         background: var(--primary-navy);
         flex-direction: column;
         padding: 30px 20px;
+
+      .hero-h1 {
+        font-size: 30px;
+      }
+
+      .hero-specs-bar {
         gap: 20px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         transform: translateY(-150%);
@@ -1313,10 +2401,25 @@
       }
       .nav-menu.open {
         transform: translateY(0);
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
       }
       .pillars-grid, .reviews-grid, .beans-grid {
+
+      .btn {
+        width: 100%;
+      }
+
+      .philosophy-feature-list {
         grid-template-columns: 1fr;
       }
+
+      .swatch-showcase {
+        grid-template-columns: 1fr;
+      }
+
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 36px;
@@ -1325,16 +2428,31 @@
         flex-direction: column;
         background: transparent;
         border: none;
+
+      .connect-form-card {
+        padding: 30px 20px;
       }
       .subscribe-input {
         background: rgba(255, 255, 255, 0.12);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: var(--radius-sm);
         margin-bottom: 10px;
+    }
+
+    /* 減少動態效果支援 */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
       .subscribe-btn {
         width: 100%;
         border-radius: var(--radius-sm);
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
   </style>
@@ -1343,6 +2461,7 @@
 
   <!-- ==========================================================================
        Header / Navigation Bar
+       HEADER & NAVIGATION BAR
        ========================================================================== -->
   <header class="site-header" id="header">
     <div class="container navbar">
@@ -1357,6 +2476,14 @@
             <line x1="10" y1="1" x2="10" y2="4"></line>
             <line x1="14" y1="1" x2="14" y2="4"></line>
           </svg>
+  <header id="top">
+    <div class="container nav-container">
+      <!-- 品牌標識 (HSING_STUDIO) -->
+      <a href="#top" class="brand-logo" aria-label="回到 HSING_STUDIO 首頁">
+        <div class="brand-symbol">H</div>
+        <div class="brand-text-group">
+          <span class="brand-name">HSING_STUDIO</span>
+          <span class="brand-sub">星語選品 · 簡約高奢</span>
         </div>
         <div class="brand-text">
           <h1>藍天咖啡</h1>
@@ -1372,8 +2499,19 @@
         <li><a href="#calculator" class="nav-link">水粉比計算</a></li>
         <li><a href="#reviews" class="nav-link">啡友盛讚</a></li>
       </ul>
+      <!-- 桌面版導覽連結 -->
+      <nav aria-label="主要導覽">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" class="nav-link">品牌理念</a></li>
+          <li><a href="#collection" class="nav-link">本季選品</a></li>
+          <li><a href="#journal" class="nav-link">穿搭日常</a></li>
+          <li><a href="#community" class="nav-link">社群摯友</a></li>
+          <li><a href="#connect" class="nav-link">VIP 預約</a></li>
+        </ul>
+      </nav>
 
       <!-- Action Buttons -->
+      <!-- 導覽功能區 (心願清單預覽 + 手機漢堡選單) -->
       <div class="nav-actions">
         <button class="cart-btn" id="openCartBtn" aria-label="打開購物車">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1383,10 +2521,23 @@
           </svg>
           <span>購物車</span>
           <span class="cart-badge" id="cartCount">0</span>
+        <button class="wishlist-pill" id="wishlistPreviewBtn" aria-label="查看心願清單">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span>收藏</span>
+          <span class="wishlist-badge" id="wishlistCount">0</span>
         </button>
 
         <button class="mobile-toggle" id="mobileToggle" aria-label="切換導覽選單">
           ☰
+        <a href="#connect" class="btn btn-primary" style="padding: 10px 20px; font-size: 12.5px; display: none;">即刻預約</a>
+
+        <!-- 手機版選單切換按鈕 -->
+        <button class="menu-toggle" id="menuToggle" aria-controls="navLinks" aria-expanded="false" aria-label="開啟導覽選單">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
     </div>
@@ -1394,9 +2545,11 @@
 
   <!-- ==========================================================================
        Hero Section
+       HERO SECTION：品牌主視覺首屏
        ========================================================================== -->
   <section class="hero" id="hero">
     <div class="hero-glow"></div>
+  <section class="hero-section" id="hero">
     <div class="container hero-grid">
       <!-- Left Content -->
       <div class="hero-content">
@@ -1407,6 +2560,15 @@
         </h2>
         <p class="hero-subtitle">
           嚴選全球高海拔莊園微批次高階咖啡豆，堅持小量慢火烘焙。以 92°C 的水溫與時間溫柔對話，讓每一口咖啡都澄澈、明亮、回甘長久。
+      <!-- 左欄：品牌宣言與行動引導 -->
+      <div class="hero-content reveal">
+        <span class="eyebrow">CURATED CAPSULE · TIMELESS LIVING</span>
+        <h1 class="hero-h1">
+          穿戴在身的，<br>
+          是我們最偏愛的<span class="highlight-text">溫潤日常</span>。
+        </h1>
+        <p class="hero-lead">
+          <strong>HSING_STUDIO</strong> 誕生於對純粹剪裁與親膚質感的偏執。我們不盲從季節快感，只挑選<strong>高奢、簡約且能在日常反覆穿著</strong>的心頭好，以溫潤的奶茶色、純淨米白與沉穩大地色調，獻給每一個熱愛生活、懂得細品的你。
         </p>
 
         <div class="hero-cta-group">
@@ -1416,10 +2578,15 @@
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
+        <div class="hero-actions">
+          <a href="#collection" class="btn btn-primary">
+            <span>探索本季私藏選品</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#brew-guide" class="btn btn-outline">
             <span>了解手沖萃取法</span>
           </a>
+          <a href="#about" class="btn btn-secondary">閱讀品牌故事</a>
         </div>
 
         <!-- Metrics -->
@@ -1427,14 +2594,25 @@
           <div class="stat-item">
             <h3>SCA 88+</h3>
             <p>精品杯測卓越評分</p>
+        <!-- 數據指標欄 -->
+        <div class="hero-specs-bar">
+          <div class="spec-item">
+            <span class="spec-value">100%</span>
+            <span class="spec-label">親膚天然嚴選面料</span>
           </div>
           <div class="stat-item">
             <h3>1800m+</h3>
             <p>高海拔微型莊園豆</p>
+          <div class="spec-item">
+            <span class="spec-value">3+</span>
+            <span class="spec-label">大地經典色系基調</span>
           </div>
           <div class="stat-item">
             <h3>48 Hours</h3>
             <p>每週烘焙新鮮直送</p>
+          <div class="spec-item">
+            <span class="spec-value">98.6%</span>
+            <span class="spec-label">摯友顧客滿意復購率</span>
           </div>
         </div>
       </div>
@@ -1467,9 +2645,41 @@
               </linearGradient>
             </defs>
           </svg>
+      <!-- 右欄：高奢選品藝術展示卡片 -->
+      <div class="hero-visual-card reveal">
+        <div class="atelier-seal">
+          <span class="atelier-title">HSING_STUDIO ATELIER</span>
+          <span class="atelier-tag">EDITION 2026</span>
+        </div>
 
           <div class="dripper-status">手沖黃金參數：92°C / 1:15</div>
           <div class="dripper-sub">澄澈透明的果香與蜂蜜尾韻</div>
+        <!-- 經典色卡展示 -->
+        <div class="swatch-showcase">
+          <div class="swatch-box">
+            <div class="swatch-color-pill milktea"></div>
+            <div class="swatch-name">溫潤奶茶</div>
+            <div class="swatch-meta">MILK TEA #C6A88B</div>
+          </div>
+          <div class="swatch-box">
+            <div class="swatch-color-pill beige"></div>
+            <div class="swatch-name">燕麥米白</div>
+            <div class="swatch-meta">OAT BEIGE #FAF7F2</div>
+          </div>
+          <div class="swatch-box">
+            <div class="swatch-color-pill earth"></div>
+            <div class="swatch-name">深焙大地</div>
+            <div class="swatch-meta">ESPRESSO #3A2E27</div>
+          </div>
+        </div>
+
+        <!-- 主理人選品短語 -->
+        <div class="curation-quote-card">
+          <p>「真正的好衣服，是在你打開衣櫥的清晨，不需要猶豫就會穿上的那一件。」</p>
+          <div class="curation-author">
+            <span>主理人選品手札</span>
+            <span>HSING / FOUNDER</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1477,8 +2687,11 @@
 
   <!-- ==========================================================================
        Brand Pillars (品牌風格: 高階咖啡豆)
+       SECTION: 品牌理念 PHILOSOPHY
        ========================================================================== */
   <section class="section pillars-section" id="about">
+  -->
+  <section class="section philosophy-section" id="about">
     <div class="container">
       <div style="text-align: center; margin-bottom: 20px;">
         <div class="eyebrow" style="justify-content: center;">HIGH-END COFFEE CRAFTSMANSHIP</div>
@@ -1487,6 +2700,17 @@
           我們只專注於手沖咖啡的極致表現，從產區生豆篩選到烘焙曲線調整，每一道工序皆為純淨風味而定。
         </p>
       </div>
+      <div class="philosophy-grid">
+        <!-- 左欄：理念敘述 -->
+        <div class="philosophy-narrative reveal">
+          <span class="eyebrow">OUR PHILOSOPHY</span>
+          <h2 class="section-title">高奢不必張揚，<br>實穿才是最高級的自洽。</h2>
+          <p>
+            在喧囂快速的流行週期裡，我們選擇放慢腳步。<strong>HSING_STUDIO</strong> 源自主理人對生活質感的挑剔與熱愛。我們堅信：<strong>「分享喜歡的東西」</strong>，不只是販售衣裝，而是傳遞一份對從容自得的生活想像。
+          </p>
+          <p>
+            每一款陳列在工作室的單品，都經過親自試穿、反覆洗滌檢驗與日常百搭測試。無論是早晨趕赴會議、午後偷閒的咖啡時光，亦或是週末與好友漫步，都能以最鬆弛自信的姿態，展現獨一無二的個人光采。
+          </p>
 
       <div class="pillars-grid">
         <!-- Card 1 -->
@@ -1495,6 +2719,28 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
+          <!-- 四大品牌基石 -->
+          <div class="philosophy-feature-list">
+            <div class="pillar-card">
+              <div class="pillar-num">01</div>
+              <h3 class="pillar-title">高奢面料</h3>
+              <p class="pillar-desc">甄選頂級內蒙山羊絨、真絲與特選初剪羊毛，以觸覺感受奢華。</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-num">02</div>
+              <h3 class="pillar-title">極簡線條</h3>
+              <p class="pillar-desc">去蕪存菁的流暢版型，藏起繁複裝飾，只留乾淨有力的輪廓美。</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-num">03</div>
+              <h3 class="pillar-title">實穿主義</h3>
+              <p class="pillar-desc">一件單品解鎖 5 種以上的穿搭可能，真正走入你的真實四季。</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-num">04</div>
+              <h3 class="pillar-title">大地色調</h3>
+              <p class="pillar-desc">奶茶、米白、淺褐與暖駝，調和出東方人最襯膚色的溫和氣韻。</p>
+            </div>
           </div>
           <h3 class="pillar-title">全球極致微批次生豆</h3>
           <p class="pillar-desc">
@@ -1508,6 +2754,11 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
             </svg>
+        <!-- 右欄：品牌規格表卡片 -->
+        <div class="brand-spec-sheet reveal">
+          <div class="spec-sheet-header">
+            <span class="spec-sheet-title">HSING STUDIO SPECIFICATION</span>
+            <span class="spec-sheet-code">VER. 2026 / CAPSULE</span>
           </div>
           <h3 class="pillar-title">淺中度智能曲線烘焙</h3>
           <p class="pillar-desc">
@@ -1522,11 +2773,34 @@
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
+          <div class="spec-row">
+            <span class="spec-key">網站品牌</span>
+            <span class="spec-val">HSING_STUDIO（星語選品）</span>
           </div>
           <h3 class="pillar-title">為手沖萃取量身校準</h3>
           <p class="pillar-desc">
             所有批次皆附贈專屬建議沖煮參數卡（水溫、粉水比、研磨度刻度與注水節奏），讓每一位咖啡愛好者在家都能沖出店內同款絕佳風味。
           </p>
+          <div class="spec-row">
+            <span class="spec-key">核心用途</span>
+            <span class="spec-val">分享真心喜歡的美好事物，打造耐久膠囊衣櫥</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">目標受眾</span>
+            <span class="spec-val">追求高奢質感、重視身心舒適度、喜愛簡約風格的摯友</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">風格美學</span>
+            <span class="spec-val">Quiet Luxury 高奢、Minimalist 簡約、Wearable 實穿</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">色彩基調</span>
+            <span class="spec-val">奶茶色（Milk Tea）、米色（Beige）、大地色（Earth Browns）</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">工作室承諾</span>
+            <span class="spec-val">小批次限量預訂、全件手工品檢、永續環保包裝</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1534,8 +2808,10 @@
 
   <!-- ==========================================================================
        Coffee Menu Showcase (功能: 吸引客戶消費咖啡)
+       SECTION: 本季選品 CURATED COLLECTION
        ========================================================================== -->
   <section class="section menu-section" id="menu">
+  <section class="section collection-section" id="collection">
     <div class="container">
       <div class="menu-header-wrap">
         <div>
@@ -1545,6 +2821,13 @@
             四款限量單品微批次，展現從清冽柑橘白花到濃郁莓果的多層次風味譜系。
           </p>
         </div>
+      <div class="section-header center reveal">
+        <span class="eyebrow">THIS SEASON'S FAVORITES</span>
+        <h2 class="section-title">分享那些，我們反覆愛上的經典款。</h2>
+        <p class="section-subtitle">
+          本季以「溫暖燕麥與榛果大地」為靈感核心，精選四款百搭不衰的經典單品。點擊右上心願按鈕，即可輕鬆加入私人收藏清單。
+        </p>
+      </div>
 
         <!-- Filter Controls -->
         <div class="filter-tabs">
@@ -1553,6 +2836,13 @@
           <button class="filter-btn" data-filter="fruity">醇厚酸甜</button>
           <button class="filter-btn" data-filter="geisha">藝伎稀有款</button>
         </div>
+      <!-- 分類篩選 Tab -->
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all">全部私藏 (4)</button>
+        <button class="filter-tab" data-filter="knit">針織毛衣</button>
+        <button class="filter-tab" data-filter="bottom">俐落褲裝</button>
+        <button class="filter-tab" data-filter="blouse">絲緞上衣</button>
+        <button class="filter-tab" data-filter="outer">大衣外套</button>
       </div>
 
       <!-- Bean Products Grid -->
@@ -1566,6 +2856,25 @@
               <ellipse cx="50" cy="50" rx="36" ry="44" fill="#0f3d69"/>
               <path d="M50 14 C44 32, 58 68, 50 86" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
             </svg>
+      <!-- 商品展示網格 -->
+      <div class="product-grid" id="productGrid">
+        
+        <!-- 商品 01：羊絨針織衫 -->
+        <article class="product-card reveal" data-category="knit" data-name="純山羊絨立領斗篷毛衣">
+          <div class="product-visual">
+            <span class="product-badge">SIGNATURE 經典款</span>
+            <button class="wishlist-heart-btn" aria-label="收藏 純山羊絨立領斗篷毛衣" data-product="純山羊絨立領斗篷毛衣">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+            <!-- 藝術視覺向量圖形 -->
+            <div class="product-visual-art" style="background: radial-gradient(circle, #EAE0D2 0%, #D8C7B2 100%);">
+              <svg width="140" height="140" viewBox="0 0 100 100" fill="none">
+                <!-- 簡約毛衣剪影 -->
+                <path d="M35 25 Q50 32 65 25 L85 45 L74 52 L66 40 L66 75 L34 75 L34 40 L26 52 L15 45 Z" fill="#C4A482" opacity="0.95"/>
+                <path d="M40 25 C45 28 55 28 60 25" stroke="#FFFFFF" stroke-width="2"/>
+                <circle cx="50" cy="50" r="3" fill="#FFFFFF" opacity="0.7"/>
+              </svg>
+            </div>
           </div>
           <div class="bean-body">
             <span class="bean-origin">衣索比亞 · 潔蒂普鎮</span>
@@ -1582,6 +2891,12 @@
                 <div class="roast-dot"></div>
                 <div class="roast-dot"></div>
                 <div class="roast-dot"></div>
+          <div class="product-details">
+            <div class="product-category-row">
+              <span class="product-cat">Knitwear / 針織</span>
+              <div class="product-tones">
+                <span class="tone-dot" style="background: #C4A482;" title="燕麥奶茶"></span>
+                <span class="tone-dot" style="background: #FAF7F2;" title="米白"></span>
               </div>
             </div>
             <div class="bean-footer">
@@ -1589,6 +2904,11 @@
               <button class="add-cart-btn" onclick="addToCart('耶加雪菲 歌迪貝 G1', 520)">
                 <span>加入購物車</span>
               </button>
+            <h3 class="product-title">純山羊絨立領斗篷毛衣</h3>
+            <p class="product-fabric">100% 內蒙古白絨 · 親膚雲朵觸感 · 鬆弛落肩剪裁</p>
+            <div class="product-footer">
+              <span class="product-price">NT$ 6,800</span>
+              <button class="btn-card-action add-wishlist-action" data-name="純山羊絨立領斗篷毛衣">加入收藏 ＋</button>
             </div>
           </div>
         </article>
@@ -1601,6 +2921,21 @@
               <ellipse cx="50" cy="50" rx="36" ry="44" fill="#091a2e"/>
               <path d="M50 14 C44 32, 58 68, 50 86" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round"/>
             </svg>
+        <!-- 商品 02：高階西裝褲 -->
+        <article class="product-card reveal" data-category="bottom" data-name="垂墜剪裁雙褶直筒西褲">
+          <div class="product-visual">
+            <span class="product-badge">BESTSELLER 熱銷首選</span>
+            <button class="wishlist-heart-btn" aria-label="收藏 垂墜剪裁雙褶直筒西褲" data-product="垂墜剪裁雙褶直筒西褲">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+            <div class="product-visual-art" style="background: radial-gradient(circle, #E1D6C7 0%, #C8B9A6 100%);">
+              <svg width="140" height="140" viewBox="0 0 100 100" fill="none">
+                <!-- 簡約褲裝剪影 -->
+                <path d="M30 20 L70 20 L75 85 L54 85 L50 48 L46 85 L25 85 Z" fill="#5E4E44" opacity="0.95"/>
+                <line x1="38" y1="20" x2="38" y2="40" stroke="#C4A482" stroke-width="1.5"/>
+                <line x1="62" y1="20" x2="62" y2="40" stroke="#C4A482" stroke-width="1.5"/>
+              </svg>
+            </div>
           </div>
           <div class="bean-body">
             <span class="bean-origin">巴拿馬 · 波奎特產區</span>
@@ -1617,6 +2952,12 @@
                 <div class="roast-dot active"></div>
                 <div class="roast-dot"></div>
                 <div class="roast-dot"></div>
+          <div class="product-details">
+            <div class="product-category-row">
+              <span class="product-cat">Trousers / 下裝</span>
+              <div class="product-tones">
+                <span class="tone-dot" style="background: #5E4E44;" title="深焙榛果"></span>
+                <span class="tone-dot" style="background: #9A8474;" title="大地淺褐"></span>
               </div>
             </div>
             <div class="bean-footer">
@@ -1624,6 +2965,11 @@
               <button class="add-cart-btn" onclick="addToCart('翡翠莊園 藍標藝伎', 1280)">
                 <span>加入購物車</span>
               </button>
+            <h3 class="product-title">垂墜剪裁雙褶直筒西褲</h3>
+            <p class="product-fabric">精梳初剪透氣羊毛混紡 · 垂直拉長比例 · 高腰收腹設計</p>
+            <div class="product-footer">
+              <span class="product-price">NT$ 4,500</span>
+              <button class="btn-card-action add-wishlist-action" data-name="垂墜剪裁雙褶直筒西褲">加入收藏 ＋</button>
             </div>
           </div>
         </article>
@@ -1636,6 +2982,22 @@
               <ellipse cx="50" cy="50" rx="36" ry="44" fill="#1e3a8a"/>
               <path d="M50 14 C44 32, 58 68, 50 86" stroke="#60a5fa" stroke-width="4.5" stroke-linecap="round"/>
             </svg>
+        <!-- 商品 03：法式蠶絲襯衫 -->
+        <article class="product-card reveal" data-category="blouse" data-name="珍珠杏米法式雙縐絲緞襯衫">
+          <div class="product-visual">
+            <span class="product-badge">NEW ARRIVAL 本週新品</span>
+            <button class="wishlist-heart-btn" aria-label="收藏 珍珠杏米法式雙縐絲緞襯衫" data-product="珍珠杏米法式雙縐絲緞襯衫">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+            <div class="product-visual-art" style="background: radial-gradient(circle, #F8F3EC 0%, #E3D7C7 100%);">
+              <svg width="140" height="140" viewBox="0 0 100 100" fill="none">
+                <!-- 簡約絲質襯衫剪影 -->
+                <path d="M35 22 L50 30 L65 22 L82 40 L72 45 L64 34 L64 78 L36 78 L36 34 L28 45 L18 40 Z" fill="#EADCCB" opacity="0.95"/>
+                <path d="M42 22 L50 32 L58 22" stroke="#5E4E44" stroke-width="1.5" fill="none"/>
+                <circle cx="50" cy="45" r="1.5" fill="#5E4E44"/>
+                <circle cx="50" cy="55" r="1.5" fill="#5E4E44"/>
+              </svg>
+            </div>
           </div>
           <div class="bean-body">
             <span class="bean-origin">肯亞 · 涅里產區</span>
@@ -1652,6 +3014,12 @@
                 <div class="roast-dot active"></div>
                 <div class="roast-dot active"></div>
                 <div class="roast-dot"></div>
+          <div class="product-details">
+            <div class="product-category-row">
+              <span class="product-cat">Silk Blouse / 襯衫</span>
+              <div class="product-tones">
+                <span class="tone-dot" style="background: #EADCCB;" title="珍珠杏米"></span>
+                <span class="tone-dot" style="background: #D1BBA2;" title="柔和奶杏"></span>
               </div>
             </div>
             <div class="bean-footer">
@@ -1659,6 +3027,11 @@
               <button class="add-cart-btn" onclick="addToCart('肯亞 奇里尼加 AA', 580)">
                 <span>加入購物車</span>
               </button>
+            <h3 class="product-title">珍珠杏米法式雙縐絲緞襯衫</h3>
+            <p class="product-fabric">19 姆米純天然桑蠶絲 · 柔光啞面質地 · 典雅小翻領</p>
+            <div class="product-footer">
+              <span class="product-price">NT$ 5,200</span>
+              <button class="btn-card-action add-wishlist-action" data-name="珍珠杏米法式雙縐絲緞襯衫">加入收藏 ＋</button>
             </div>
           </div>
         </article>
@@ -1671,6 +3044,20 @@
               <ellipse cx="50" cy="50" rx="36" ry="44" fill="#0c4a6e"/>
               <path d="M50 14 C44 32, 58 68, 50 86" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
             </svg>
+        <!-- 商品 04：手工雙面羊毛大衣 -->
+        <article class="product-card reveal" data-category="outer" data-name="全手工劈縫雙面羊毛綁帶大衣">
+          <div class="product-visual">
+            <span class="product-badge">LIMITED 限量臻藏</span>
+            <button class="wishlist-heart-btn" aria-label="收藏 全手工劈縫雙面羊毛綁帶大衣" data-product="全手工劈縫雙面羊毛綁帶大衣">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+            <div class="product-visual-art" style="background: radial-gradient(circle, #D8C3AA 0%, #B89E84 100%);">
+              <svg width="140" height="140" viewBox="0 0 100 100" fill="none">
+                <!-- 簡約大衣剪影 -->
+                <path d="M33 18 L50 28 L67 18 L86 42 L74 46 L68 34 L72 88 L28 88 L32 34 L26 46 L14 42 Z" fill="#A58261" opacity="0.95"/>
+                <line x1="28" y1="52" x2="72" y2="52" stroke="#FAF7F2" stroke-width="2.5"/>
+              </svg>
+            </div>
           </div>
           <div class="bean-body">
             <span class="bean-origin">哥倫比亞 · 考卡省</span>
@@ -1687,6 +3074,12 @@
                 <div class="roast-dot active"></div>
                 <div class="roast-dot"></div>
                 <div class="roast-dot"></div>
+          <div class="product-details">
+            <div class="product-category-row">
+              <span class="product-cat">Outerwear / 大衣外套</span>
+              <div class="product-tones">
+                <span class="tone-dot" style="background: #A58261;" title="暖調駝棕"></span>
+                <span class="tone-dot" style="background: #3A2E27;" title="深焙可可"></span>
               </div>
             </div>
             <div class="bean-footer">
@@ -1694,9 +3087,15 @@
               <button class="add-cart-btn" onclick="addToCart('天堂莊園 雙重厭氧熱衝擊', 680)">
                 <span>加入購物車</span>
               </button>
+            <h3 class="product-title">全手工劈縫雙面羊毛綁帶大衣</h3>
+            <p class="product-fabric">100% 澳洲美麗諾純羊毛 · 手工隱形縫線 · 自帶氣場收腰腰帶</p>
+            <div class="product-footer">
+              <span class="product-price">NT$ 12,800</span>
+              <button class="btn-card-action add-wishlist-action" data-name="全手工劈縫雙面羊毛綁帶大衣">加入收藏 ＋</button>
             </div>
           </div>
         </article>
+
       </div>
     </div>
   </section>
@@ -1704,6 +3103,7 @@
   <!-- ==========================================================================
        Pour-Over Guide & Interactive Ratio Calculator
        (用途: 推廣手沖咖啡)
+       SECTION: 穿搭日常 STYLING JOURNAL (實穿精神)
        ========================================================================== -->
   <section class="section brew-section" id="brew-guide">
     <div class="container brew-grid">
@@ -1713,7 +3113,15 @@
         <h2 class="section-title" style="color: #ffffff;">藍天手沖四步法</h2>
         <p class="section-desc" style="color: rgba(255,255,255,0.75);">
           手沖不只是萃取咖啡，更是與香氣共度的靜心時刻。遵循以下經典步驟，輕鬆釋放豆子靈魂。
+  <section class="section journal-section" id="journal">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">STYLING JOURNAL</span>
+        <h2 class="section-title">一套衣服，三種日常節奏。</h2>
+        <p class="section-subtitle">
+          實穿的真諦，是在不同的生活場景中無縫切換。我們精心調配的色彩與比例，讓每件單品都能隨性組合，展現不費力的優雅。
         </p>
+      </div>
 
         <div class="brew-steps-list">
           <div class="brew-step-item">
@@ -1722,7 +3130,19 @@
               <h4>研磨與溫壺準備 (Grind & Rinse)</h4>
               <p>選用中細研磨度（約二號砂糖粗細），以 92°C 軟水浸濕濾紙並溫熱分享壺，倒除溫壺水。</p>
             </div>
+      <div class="journal-grid">
+        <!-- 情境 01 -->
+        <div class="journal-card reveal">
+          <span class="journal-time">09:00 AM · MORNING POISE</span>
+          <h3 class="journal-title">週一商務晨光：俐落而不失溫柔</h3>
+          <p class="journal-desc">
+            穿上垂墜羊毛西裝褲與珍珠杏米絲緞襯衫，外披一件羊絨開襟衫。在理性幹練的會議輪廓中，融入一抹柔美奶茶色，散發從容篤定的專業魅力。
+          </p>
+          <div class="journal-formula">
+            <strong>RECOMMENDED FORMULA</strong>
+            絲緞襯衫 + 直筒雙褶西褲 + 低跟穆勒鞋
           </div>
+        </div>
 
           <div class="brew-step-item">
             <div class="step-badge">02</div>
@@ -1730,6 +3150,16 @@
               <h4>均勻悶蒸喚醒 (Bloom · 30秒)</h4>
               <p>注入咖啡粉量 2 至 2.5 倍水量（約 35ml），由中心向外輕繞浸潤，靜置 30 秒等待香氣膨脹釋放。</p>
             </div>
+        <!-- 情境 02 -->
+        <div class="journal-card reveal">
+          <span class="journal-time">03:30 PM · AFTERNOON ESCAPE</span>
+          <h3 class="journal-title">午後咖啡靜謐：鬆弛舒適的自洽感</h3>
+          <p class="journal-desc">
+            一件高領斗篷針織毛衣，搭配柔軟的棉麻長裙。輕盈保暖的面料貼合肌膚，隨手拿起喜愛的書籍，在溫暖陽光下享受專屬於自己的靜心時光。
+          </p>
+          <div class="journal-formula">
+            <strong>RECOMMENDED FORMULA</strong>
+            斗篷羊絨毛衣 + A字米白長裙 + 皮質托特包
           </div>
 
           <div class="brew-step-item">
@@ -1763,6 +3193,16 @@
               <strong style="color: var(--sky-blue);" id="groundValDisplay">15 g</strong>
             </div>
             <input type="range" min="10" max="35" step="1" value="15" class="calc-slider" id="groundSlider">
+        <!-- 情境 03 -->
+        <div class="journal-card reveal">
+          <span class="journal-time">07:00 PM · EVENING SERENITY</span>
+          <h3 class="journal-title">週末藝廊夜遊：低調高奢的極簡氣質</h3>
+          <p class="journal-desc">
+            隨性繫上全羊毛雙面手工大衣，大地深褐色調襯托肌膚光澤。不需要喧鬧的配飾，只需一抹乾淨淡妝，就能成為空間裡最耐人尋味的風景。
+          </p>
+          <div class="journal-formula">
+            <strong>RECOMMENDED FORMULA</strong>
+            雙面羊毛綁帶大衣 + 羊絨圍巾 + 經典短靴
           </div>
 
           <!-- Input: Ratio Selection -->
@@ -1804,14 +3244,21 @@
 
   <!-- ==========================================================================
        Customer Reviews (目標受眾: 咖啡愛好者)
+       SECTION: 客戶真實回饋 TESTIMONIALS (喜歡我們的人)
        ========================================================================== -->
   <section class="section reviews-section" id="reviews">
+  <section class="section community-section" id="community">
     <div class="container">
       <div style="text-align: center; margin-bottom: 20px;">
         <div class="eyebrow" style="justify-content: center;">COFFEE ENTHUSIAST FEEDBACK</div>
         <h2 class="section-title">愛好者杯中的晴朗時刻</h2>
         <p class="section-desc" style="margin: 0 auto;">
           來自專業杯測師、手沖愛好者與獨立咖啡館主理人的真實品鑑分享。
+      <div class="section-header center reveal">
+        <span class="eyebrow">OUR COMMUNITY</span>
+        <h2 class="section-title">聽聽與我們頻率相同的人，怎麼說。</h2>
+        <p class="section-subtitle">
+          感謝每一位支持 HSING_STUDIO 的朋友。因為有你們對質感的堅持，才讓這份美好的分享有了真正的意義。
         </p>
       </div>
 
@@ -1821,12 +3268,23 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">
             「耶加雪菲的茉莉花香非常鮮活！92度沖出來酸甜平衡感極佳，放涼後喝起來像在喝頂級白桃果茶，完全打破我對咖啡酸味的刻板印象。」
+      <div class="testimonials-grid">
+        <!-- 評論 01 -->
+        <div class="quote-box reveal">
+          <div class="quote-mark">“</div>
+          <p class="quote-text">
+            「在 HSING_STUDIO 買的第一件羊絨衫，是我這整個冬天穿最多次的衣服。沒有大張旗鼓的 logo，但每次穿去見客戶都會被稱讚氣質很好，質感摸得出來不一樣。」
           </p>
           <div class="reviewer-info">
             <div class="reviewer-avatar">林</div>
             <div>
               <div class="reviewer-name">林宏宇</div>
               <div class="reviewer-role">居家手沖愛好者 · 沖煮經驗 4 年</div>
+          <div class="quote-author-group">
+            <div class="author-avatar">L</div>
+            <div class="author-info">
+              <span class="author-name">林小姐 (Evelyn)</span>
+              <span class="author-role">室內建築設計師 · 忠實回購摯友</span>
             </div>
           </div>
         </div>
@@ -1836,12 +3294,22 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">
             「藍天咖啡的翡翠莊園藍標藝伎，乾香就是滿滿的橙花與柑橘調。附贈的沖煮參數卡非常精準，照著做一次就沖出令人驚豔的伯爵茶感。」
+        <!-- 評論 02 -->
+        <div class="quote-box reveal">
+          <div class="quote-mark">“</div>
+          <p class="quote-text">
+            「實穿真的不是對時尚的妥協，而是把頂級版型自然融入日常！奶茶色系非常襯托亞洲人膚色，穿上身那種溫暖安心的包裹感，讓人一天心情都很平靜。」
           </p>
           <div class="reviewer-info">
             <div class="reviewer-avatar">陳</div>
             <div>
               <div class="reviewer-name">陳雅筑</div>
               <div class="reviewer-role">SCA 國際咖啡證照烘豆師</div>
+          <div class="quote-author-group">
+            <div class="author-avatar">C</div>
+            <div class="author-info">
+              <span class="author-name">陳小姐 (Claire)</span>
+              <span class="author-role">獨立文字工作者 · 慢生活推廣者</span>
             </div>
           </div>
         </div>
@@ -1851,12 +3319,22 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">
             「肯亞奇里尼加的黑醋栗與黑糖甜感無可挑剔！出貨日期真的都是當週新鮮現烘，咖啡豆排氣養豆後沖煮極其順暢，已加入每月固定訂閱。」
+        <!-- 評論 03 -->
+        <div class="quote-box reveal">
+          <div class="quote-mark">“</div>
+          <p class="quote-text">
+            「收到包裹時淡淡的木質調香氛與手寫字卡讓人驚喜。主理人挑選的每一款都是真愛款，雙褶西裝褲版型極佳，真的是少數盲買完全不踩雷的高奢選品店！」
           </p>
           <div class="reviewer-info">
             <div class="reviewer-avatar">張</div>
             <div>
               <div class="reviewer-name">張博翔</div>
               <div class="reviewer-role">台北獨立工作室主理人</div>
+          <div class="quote-author-group">
+            <div class="author-avatar">S</div>
+            <div class="author-info">
+              <span class="author-name">蘇小姐 (Sophia)</span>
+              <span class="author-role">品牌行銷顧問 · VIP 預約客人</span>
             </div>
           </div>
         </div>
@@ -1866,6 +3344,7 @@
 
   <!-- ==========================================================================
        CTA & Subscription Section (吸引客戶消費咖啡)
+       SECTION: VIP 預約與訂閱 CONNECT (功能：吸引客戶)
        ========================================================================== -->
   <section class="section cta-section" id="subscribe">
     <div class="container cta-box">
@@ -1874,6 +3353,32 @@
       <p class="cta-desc">
         每月精選兩款限量莊園級咖啡豆，享有專屬 9 折會員禮遇與沖煮指南。立即留下電子信箱，首期訂購現折 NT$ 100。
       </p>
+  <section class="section connect-section" id="connect">
+    <div class="container">
+      <div class="connect-grid">
+        <!-- 左欄：誘因與會員權益說明 -->
+        <div class="connect-content reveal">
+          <span class="eyebrow">EXCLUSIVE PRIVILEGE</span>
+          <h2 class="connect-title">給喜歡質感的你，<br>留一個溫暖角落。</h2>
+          <p class="connect-desc">
+            預約加入 <strong>HSING VIP 專屬會員</strong>，第一時間獲取本季微批次私藏選品預告、享受台北/台中私密展間 1-on-1 穿搭試穿體驗，並領取專屬首購禮遇。
+          </p>
+          
+          <div class="connect-perks">
+            <div class="perk-item">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>私密展間預約制 1 對 1 專屬身形穿搭顧問服務</span>
+            </div>
+            <div class="perk-item">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>每月初發送《主理人選品通信》：穿搭靈感與生活美學手札</span>
+            </div>
+            <div class="perk-item">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>新季新品發表提前 48 小時 VIP 封館專屬搶先預訂權</span>
+            </div>
+          </div>
+        </div>
 
       <form class="subscribe-form" id="subscribeForm">
         <input type="email" class="subscribe-input" placeholder="請輸入您的電子郵件地址..." required id="userEmail">
@@ -1881,6 +3386,13 @@
       </form>
     </div>
   </section>
+        <!-- 右欄：預約吸引客戶表單 -->
+        <div class="connect-form-card reveal">
+          <form id="leadCaptureForm">
+            <div class="form-group">
+              <label for="userName" class="form-label">您的稱呼 / NAME</label>
+              <input type="text" id="userName" class="form-input" placeholder="例如：林小姐 / Sophia" required>
+            </div>
 
   <!-- ==========================================================================
        Shopping Cart Drawer
@@ -1891,20 +3403,40 @@
       <h3>我的品味清單 (<span id="drawerCount">0</span>)</h3>
       <button class="close-drawer-btn" id="closeCartBtn">&times;</button>
     </div>
+            <div class="form-group">
+              <label for="userEmail" class="form-label">電子信箱 / EMAIL</label>
+              <input type="email" id="userEmail" class="form-input" placeholder="name@example.com" required>
+            </div>
 
     <div class="cart-drawer-items" id="cartItemsContainer">
       <!-- Empty State -->
       <p style="text-align:center; color:#94a3b8; margin-top:40px;">目前購物車內尚無咖啡豆。<br>快去挑選您喜愛的手沖產區吧！</p>
     </div>
+            <div class="form-group">
+              <label for="userPreference" class="form-label">偏好選品類型 / INTEREST</label>
+              <select id="userPreference" class="form-select">
+                <option value="針織毛衣與羊絨系列">針織毛衣與山羊絨系列（極致親膚）</option>
+                <option value="俐落西裝褲與剪裁下身">俐落西裝褲與剪裁下身（修身日常）</option>
+                <option value="真絲襯衫與法式優雅上衣">真絲襯衫與法式優雅上衣（輕奢微光）</option>
+                <option value="手工雙面羊毛大衣">手工雙面羊毛大衣（經典保值）</option>
+                <option value="預約工作室實體試穿體驗">預約工作室實體 1-on-1 試穿體驗</option>
+              </select>
+            </div>
 
     <div class="cart-drawer-footer">
       <div class="cart-total-row">
         <span>結帳總額</span>
         <span id="cartTotal">NT$ 0</span>
+            <button type="submit" class="btn form-submit-btn" id="submitLeadBtn">
+              即刻加入 HSING VIP 俱樂部 →
+            </button>
+          </form>
+        </div>
       </div>
       <button class="checkout-btn" onclick="checkoutAction()">前往結帳確認</button>
     </div>
   </aside>
+  </section>
 
   <!-- Floating Toast Notification -->
   <div class="toast-msg" id="toastMsg">
@@ -1917,6 +3449,7 @@
 
   <!-- ==========================================================================
        Footer
+       FOOTER 頁尾資訊
        ========================================================================== -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -1928,10 +3461,49 @@
               <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
               <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
             </svg>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- 品牌區 -->
+        <div class="footer-col-brand">
+          <div class="brand-logo">
+            <div class="brand-symbol">H</div>
+            <div class="brand-text-group">
+              <span class="brand-name">HSING_STUDIO</span>
+              <span class="brand-sub">星語選品 · 簡約高奢</span>
+            </div>
           </div>
           <div class="brand-text">
             <h2 style="font-size: 1.15rem; font-family: var(--font-serif); color:#fff;">藍天咖啡</h2>
             <span>BLUE SKY COFFEE</span>
+          <p class="footer-bio">
+            「穿戴在身，是一份對生活的深情。」<br>
+            以溫暖的大地色調與天然面料，為喜愛簡約本質的你，打造歷久彌新的高品質衣櫥。
+          </p>
+        </div>
+
+        <!-- 快速導覽 -->
+        <div>
+          <h4 class="footer-heading">頁面導覽</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#about">品牌理念</a></li>
+            <li><a href="#collection">本季選品</a></li>
+            <li><a href="#journal">穿搭日常</a></li>
+            <li><a href="#community">社群摯友</a></li>
+            <li><a href="#connect">VIP 預約</a></li>
+          </ul>
+        </div>
+
+        <!-- 工作室門市據點 -->
+        <div>
+          <h4 class="footer-heading">實體展間據點</h4>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>預約制私人展間：台中市西屯區僑光路 100 號</span>
+          </div>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            <span>週二至週日 11:30 — 19:30（週一公休）</span>
           </div>
         </div>
         <p>
@@ -1949,6 +3521,18 @@
           <li><a href="#calculator">水粉比計算工具</a></li>
           <li><a href="#reviews">顧客真實盛讚</a></li>
         </ul>
+        <!-- 聯繫方式 -->
+        <div>
+          <h4 class="footer-heading">聯繫與社群</h4>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>contact@hsingstudio.com</span>
+          </div>
+          <div class="footer-info-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram: @hsing_studio</span>
+          </div>
+        </div>
       </div>
 
       <!-- Column 3: Coffee Knowledge -->
@@ -1968,6 +3552,12 @@
         <div class="footer-contact-item">
           <span>📍</span>
           <span>台北市大安區晴空路一段 88 號（手沖體驗旗艦店）</span>
+      <!-- 頁尾底列聲明 -->
+      <div class="footer-bottom">
+        <div>© 2026 HSING_STUDIO. ALL RIGHTS RESERVED. ｜ 學生學號：11425241 蘇星語</div>
+        <div>
+          <span>優雅設計 · 純淨自洽 · </span>
+          <a href="#top">回到頂端 ↑</a>
         </div>
         <div class="footer-contact-item">
           <span>📞</span>
@@ -1991,18 +3581,37 @@
     </div>
   </footer>
 
+  <!-- 回到頂端浮動按鈕 -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="回到頁面頂端">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- TOAST 通知元件容器 -->
+  <div class="toast-container" id="toastContainer" role="status" aria-live="polite"></div>
+
   <!-- ==========================================================================
        JavaScript Logic
+       JAVASCRIPT 互動功能
        ========================================================================== -->
   <script>
     // 1. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. 心願清單狀態管理 (收藏功能)
+      const wishlist = new Set();
+      const wishlistCountEl = document.getElementById('wishlistCount');
+      const wishlistPreviewBtn = document.getElementById('wishlistPreviewBtn');
 
     mobileToggle.addEventListener('click', () => {
       navMenu.classList.toggle('open');
       mobileToggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
     });
+      function updateWishlistBadge() {
+        if (wishlistCountEl) {
+          wishlistCountEl.textContent = wishlist.size;
+        }
+      }
 
     // Close mobile nav when clicking any nav link
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -2011,23 +3620,67 @@
         mobileToggle.textContent = '☰';
       });
     });
+      // 2. Toast 提示彈窗機制
+      const toastContainer = document.getElementById('toastContainer');
+      let toastTimer = null;
 
     // 2. Coffee Menu Filter Tabs
     const filterBtns = document.querySelectorAll('.filter-btn');
     const beanCards = document.querySelectorAll('.bean-card');
+      function showToast(message) {
+        if (!toastContainer) return;
+        
+        // 清除先前計時
+        if (toastTimer) clearTimeout(toastTimer);
+        toastContainer.innerHTML = '';
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `
+          <svg class="toast-icon" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <span>${message}</span>
+        `;
 
         const filter = btn.dataset.filter;
         beanCards.forEach(card => {
           if (filter === 'all' || card.dataset.category === filter) {
             card.style.display = 'flex';
+        toastContainer.appendChild(toast);
+        // 強制 reflow 觸發進場動畫
+        void toast.offsetWidth;
+        toast.classList.add('show');
+
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 350);
+        }, 2800);
+      }
+
+      // 點擊收藏按鈕切換
+      const heartBtns = document.querySelectorAll('.wishlist-heart-btn');
+      heartBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const prodName = btn.getAttribute('data-product');
+          if (wishlist.has(prodName)) {
+            wishlist.delete(prodName);
+            btn.classList.remove('active');
+            showToast(`已從收藏清單中移除「${prodName}」`);
           } else {
             card.style.display = 'none';
+            wishlist.add(prodName);
+            btn.classList.add('active');
+            showToast(`已成功將「${prodName}」加入心願清單！`);
           }
+          updateWishlistBadge();
         });
       });
     });
@@ -2057,11 +3710,36 @@
         if (btn.textContent.includes(`1 : ${ratio}`)) {
           btn.classList.add('active');
         }
+      // 商品卡片底部「加入收藏」按鈕
+      const cardActionBtns = document.querySelectorAll('.add-wishlist-action');
+      cardActionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-name');
+          const heartBtn = document.querySelector(`.wishlist-heart-btn[data-product="${name}"]`);
+          if (!wishlist.has(name)) {
+            wishlist.add(name);
+            if (heartBtn) heartBtn.classList.add('active');
+            showToast(`已將「${name}」加入心願收藏清單 ♥`);
+          } else {
+            showToast(`「${name}」已在您的收藏清單中。`);
+          }
+          updateWishlistBadge();
+        });
       });
       updateCalculator();
     }
 
     groundSlider.addEventListener('input', updateCalculator);
+      if (wishlistPreviewBtn) {
+        wishlistPreviewBtn.addEventListener('click', () => {
+          if (wishlist.size === 0) {
+            showToast('目前心願清單尚無選品，快去挑選喜歡的心頭好吧！');
+          } else {
+            const items = Array.from(wishlist).join('、');
+            showToast(`目前已收藏 ${wishlist.size} 款：${items}`);
+          }
+        });
+      }
 
     // 4. Shopping Cart System (吸引客戶消費咖啡)
     const cart = [];
@@ -2076,6 +3754,9 @@
     const toastMsg = document.getElementById('toastMsg');
     const toastText = document.getElementById('toastText');
     let toastTimer;
+      // 3. 商品分類篩選 (Filter Tabs)
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const productCards = document.querySelectorAll('.product-card');
 
     function showToast(text) {
       toastText.textContent = text;
@@ -2085,34 +3766,79 @@
         toastMsg.classList.remove('show');
       }, 3000);
     }
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          filterTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
 
     function openCart() {
       cartOverlay.classList.add('active');
       cartDrawer.classList.add('active');
     }
+          const filterValue = tab.getAttribute('data-filter');
 
     function closeCart() {
       cartOverlay.classList.remove('active');
       cartDrawer.classList.remove('active');
     }
+          productCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filterValue === 'all' || category === filterValue) {
+              card.style.display = 'flex';
+              // 重新觸發微動畫
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
 
     openCartBtn.addEventListener('click', openCart);
     closeCartBtn.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
+      // 4. 手機版漢堡導覽選單開關
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
     function updateCartUI() {
       const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
       cartCountEl.textContent = totalCount;
       drawerCountEl.textContent = totalCount;
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', isOpen);
+          menuToggle.setAttribute('aria-label', isOpen ? '關閉導覽選單' : '開啟導覽選單');
+        });
 
       if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p style="text-align:center; color:#94a3b8; margin-top:40px;">目前購物車內尚無咖啡豆。<br>快去挑選您喜愛的手沖產區吧！</p>';
         cartTotalEl.textContent = 'NT$ 0';
         return;
+        // 點擊任一導覽連結自動收合選單
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', () => {
+            if (navLinks.classList.contains('open')) {
+              navLinks.classList.remove('open');
+              menuToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+        });
       }
 
       let totalAmount = 0;
       let html = '';
+      // 5. 吸引客戶：VIP 預約與留名表單提交
+      const leadForm = document.getElementById('leadCaptureForm');
+      if (leadForm) {
+        leadForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameInput = document.getElementById('userName');
+          const emailInput = document.getElementById('userEmail');
+          const name = nameInput ? nameInput.value.trim() : '貴賓';
 
       cart.forEach((item, index) => {
         const itemSubtotal = item.price * item.qty;
@@ -2130,17 +3856,38 @@
           </div>
         `;
       });
+          showToast(`感謝 ${name}！已為您登記 VIP 名額，專屬選品通信將寄發至您的信箱。`);
+          leadForm.reset();
+        });
+      }
 
       cartItemsContainer.innerHTML = html;
       cartTotalEl.textContent = 'NT$ ' + totalAmount.toLocaleString();
     }
+      // 6. 滾動進場效果 (Scroll Reveal with IntersectionObserver)
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
 
     function addToCart(name, price) {
       const existing = cart.find(item => item.name === name);
       if (existing) {
         existing.qty += 1;
+        reveals.forEach(el => observer.observe(el));
       } else {
         cart.push({ name, price, qty: 1 });
+        // Fallback for older browsers
+        reveals.forEach(el => el.classList.add('visible'));
       }
       updateCartUI();
       showToast(`已將「${name}」加入購物車！`);
@@ -2151,6 +3898,9 @@
       updateCartUI();
       showToast(`已將「${removed[0].name}」移出購物車`);
     }
+      // 7. 回到頂端按鈕與 Navbar 捲動陰影控制
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      const headerEl = document.getElementById('top');
 
     function checkoutAction() {
       if (cart.length === 0) {
@@ -2162,6 +3912,16 @@
       updateCartUI();
       closeCart();
     }
+      window.addEventListener('scroll', () => {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        if (backToTopBtn) {
+          if (scrollY > 400) {
+            backToTopBtn.classList.add('show');
+          } else {
+            backToTopBtn.classList.remove('show');
+          }
+        }
+      }, { passive: true });
 
     // 5. Subscription Form
     document.getElementById('subscribeForm').addEventListener('submit', (e) => {
@@ -2170,6 +3930,10 @@
       if (email) {
         showToast('感謝訂閱！首期折扣碼【BLUESKY100】已發送至您的信箱。');
         document.getElementById('userEmail').value = '';
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       }
     });
 
